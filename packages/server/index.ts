@@ -1,6 +1,8 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 
@@ -10,8 +12,9 @@ app.get('/api/health', (req,res)=>{
     res.json({message: "You are Healthy"})
 })
 
-app.listen(port, () => {
-    console.log(`Server is running on port http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+}
 
 
+export default app;
