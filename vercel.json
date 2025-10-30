@@ -8,13 +8,11 @@
     {
       "src": "packages/client/vite.config.*",
       "use": "@vercel/static-build",
-      "config": {
-        "distDir": "packages/client/dist"
-      }
+      "config": { "distDir": "packages/client/dist" }
     }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "packages/server/dist/index.js" },
-    { "src": "/(.*)", "dest": "/packages/client/dist/$1" }
+    { "src": "/(.*)", "dest": "packages/client/dist/$1" }
   ]
 }
