@@ -6,10 +6,10 @@
     "concurrently": "^9.2.1"
   },
    "scripts": {
-  "dev": "bun run index.ts",
-  "build": "cd packages/client && bun run build && cd ../server && bun run tsc",
-  "start": "node packages/server/dist/index.js"
-},
+    "dev": "bun run index.ts",
+    "build": "cd packages/client && bun run build && cd ../server && bun run build",
+    "start": "node packages/server/dist/index.js"
+  },
    "workspaces": [
     "packages/*"
   ],
