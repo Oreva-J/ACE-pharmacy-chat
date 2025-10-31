@@ -7,7 +7,7 @@
   },
    "scripts": {
     "dev": "bun run index.ts",
-    "build": "cd packages/client && bun run build && cd ../server && bun run build",
+    "build": "bun check-build.js",
     "start": "node packages/server/dist/index.js"
   },
    "workspaces": [
