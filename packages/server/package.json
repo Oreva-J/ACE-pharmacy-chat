@@ -8,10 +8,9 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.4"
   },
-  "scripts": {
-    "start": "node index.ts",
-    "dev": "bun run --watch index.ts",
-    "build": "tsc"
+   "scripts": {
+    "dev": "bun --watch index.ts",
+    "build": "bun build index.ts --outdir dist"
   },
   "peerDependencies": {
     "typescript": "^5"
