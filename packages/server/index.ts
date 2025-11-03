@@ -1,6 +1,13 @@
 import express from 'express';
+import router from './routes/chatRoute.js';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express();
+
+app.use(express.json())
+app.use(router)
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
