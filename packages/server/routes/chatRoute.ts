@@ -4,6 +4,6 @@ import { control } from "../controllers/chatController.js";
 const {chatControl} = control
 const router = Router()
 
-router.post('/api/test', chatControl)
+router.post('/api/chat', chatControl)
 
 export default router
