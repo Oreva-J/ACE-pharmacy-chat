@@ -1,13 +1,13 @@
 import Ai_ChatBot from "./components/chat/Ai_ChatBot"
-import { Button } from "./components/ui/button"
+// import EnhancedPharmacyChatbot from "./components/chat/EnhancedChatbot"
 
 
 const App = () => {
   return (
-    <div>
-      <p className='text-3xl bg-red-500'>Hello world!!! Welcome to ACE chat</p>
-      <Button>Click me</Button>
+    <div className="h-screen w-full p-8">
+
       <Ai_ChatBot />
+      {/* <EnhancedPharmacyChatbot /> */}
     </div>
   )
 }
