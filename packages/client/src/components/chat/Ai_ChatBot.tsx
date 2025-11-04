@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import Ai_BotInput from './Ai_BotInput'
 import axios from 'axios'
 import ChatMessages, { type Messages } from './ChatMessages'
+import TypingIndicator from './TypingIndicator'
 
 type ChatResponse = {
   message: string
@@ -39,7 +40,7 @@ const Chatbot = () => {
     <div className='p-5 flex flex-col h-full' >
       <div className='flex flex-col flex-1 gap-3 px-10 mb-5 overflow-y-auto'>
         <ChatMessages messages={messages} />
-        {/* {IsBotTyping && <TypingIndicator />} */}
+        {IsBotTyping && <TypingIndicator />}
         {error && <div className='text-red-500 font-bold'>{error}</div>}
       </div>
       <Ai_BotInput onSubmit={onSubmit} />
