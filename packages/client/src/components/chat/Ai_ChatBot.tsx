@@ -46,7 +46,7 @@ const Chatbot = () => {
     }
   }
   return (
-    <div className='p-5 flex flex-col h-full border-8 border-amber-700' >
+    <div className='p-5 flex flex-col h-full ' >
       <div className='flex flex-col flex-1 gap-3 px-10 mb-5 overflow-y-auto'>
         <ChatMessages messages={messages} />
         {IsBotTyping && <TypingIndicator />}
