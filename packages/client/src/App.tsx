@@ -1,10 +1,9 @@
 import Ai_ChatBot from "./components/chat/Ai_ChatBot"
-// import EnhancedPharmacyChatbot from "./components/chat/EnhancedChatbot"
 
 
 const App = () => {
   return (
-    <div className="h-screen w-full p-8">
+    <div className="h-screen w-full px-8">
 
       <Ai_ChatBot />
       {/* <EnhancedPharmacyChatbot /> */}

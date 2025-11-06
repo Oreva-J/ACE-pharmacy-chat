@@ -1,8 +1,9 @@
 import { FaArrowUp } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
+import { useRef } from "react";
 
-type ChatFormData = {
+export type ChatFormData = {
   prompt: string;
 };
 
@@ -11,7 +12,9 @@ type props = {
 };
 
 const Ai_BotInput = ({ onSubmit }: props) => {
-  const { register, handleSubmit, formState, reset } = useForm<ChatFormData>();
+  // enable onChange so formState.isValid updates as the user types
+  const { register, handleSubmit, formState, reset } = useForm<ChatFormData>({ mode: "onChange" });
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -21,6 +24,8 @@ const Ai_BotInput = ({ onSubmit }: props) => {
   };
   const submit = handleSubmit((data) => {
     reset({ prompt: "" });
+    // restore focus so user can continue typing without a manual click
+    textareaRef.current?.focus();
     onSubmit(data);
   });
 
@@ -28,15 +33,25 @@ const Ai_BotInput = ({ onSubmit }: props) => {
     <form
       onSubmit={submit}
       onKeyDown={onKeyDown}
-      className="flex flex-col gap-2 items-end border-2 rounded-2xl m-12 p-4"
+      className="flex flex-col gap-1 items-end border-2 rounded-2xl m-12 p-4"
     >
       <textarea
-        {...register("prompt", {
-          required: true,
-          validate: (data) => data.trim().length > 0,
-        })}
+        {...(() => {
+          // keep register props but attach our own ref so we can focus after reset
+          const reg = register("prompt", {
+            required: true,
+            validate: (data) => data.trim().length > 0,
+          });
+          return {
+            ...reg,
+            ref: (e: HTMLTextAreaElement | null) => {
+              reg.ref(e);
+              textareaRef.current = e;
+            },
+          };
+        })()}
         autoFocus
-        className="w-full outline-none resize-none border-0 p-8 "
+        className="w-full outline-none resize-none border-0 p-0 "
         placeholder="Type your message here..."
         maxLength={500}
       />
