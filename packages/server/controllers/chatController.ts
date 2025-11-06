@@ -14,7 +14,11 @@ const chatSchema = z.object({
 
 const chatControl = async (req: Request, res: Response) => {
     try {
-                console.log(req.body)
+      console.log("=== Chat Request ===");
+      console.log("Body:", req.body);
+      console.log("Environment check:", {
+        hasOpenAI: !!process.env.OPENAI_API_KEY,
+      });
                 // validate request body
                 const parseResult = chatSchema.safeParse(req.body);
                 if (!parseResult.success) {
